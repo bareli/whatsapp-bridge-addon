@@ -44,6 +44,7 @@ RUN npm run build && npm prune --omit=dev
 ENV NODE_ENV=production
 
 COPY rootfs /
+RUN chmod a+x /etc/services.d/*/run /etc/services.d/*/finish 2>/dev/null || true
 
 LABEL \
     io.hass.name="WhatsApp Bridge" \
