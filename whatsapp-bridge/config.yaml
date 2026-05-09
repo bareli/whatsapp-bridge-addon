@@ -2,7 +2,7 @@ name: WhatsApp Bridge
 version: "0.1.0"
 slug: whatsapp_bridge
 description: WhatsApp Web bridge for Home Assistant (whatsapp-web.js engine).
-url: https://github.com/your-username/whatsapp-bridge-addon
+url: https://github.com/bareli/whatsapp-bridge-addon
 arch:
   - amd64
   - aarch64
@@ -35,4 +35,4 @@ options:
   log_level: info
   api_token: ""
   qr_refresh_seconds: 30
-image: ghcr.io/your-username/{arch}-whatsapp-bridge
+image: ghcr.io/bareli/{arch}-whatsapp-bridge

@@ -14,7 +14,7 @@ This add-on runs a small Node.js service that:
 - Persists the session under `/data` so reboots do not require re-pairing.
 
 It is intended to be paired with the
-[WhatsApp Bridge HACS package](https://github.com/your-username/whatsapp-bridge-hass),
+[WhatsApp Bridge HACS package](https://github.com/bareli/whatsapp-bridge-hass),
 which provides the Home Assistant integration, services, and Lovelace card.
 
 ## Installation

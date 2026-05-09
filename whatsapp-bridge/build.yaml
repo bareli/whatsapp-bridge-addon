@@ -4,5 +4,5 @@ build_from:
 labels:
   org.opencontainers.image.title: WhatsApp Bridge
   org.opencontainers.image.description: WhatsApp Web bridge for Home Assistant
-  org.opencontainers.image.source: https://github.com/your-username/whatsapp-bridge-addon
+  org.opencontainers.image.source: https://github.com/bareli/whatsapp-bridge-addon
   org.opencontainers.image.licenses: Apache-2.0
