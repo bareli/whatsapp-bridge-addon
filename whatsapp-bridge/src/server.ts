@@ -194,19 +194,19 @@ export async function buildServer(opts: ServerOptions): Promise<FastifyInstance>
   });
 
   app.register(async (instance) => {
-    instance.get("/ws", { websocket: true }, (conn, req) => {
+    instance.get("/ws", { websocket: true }, (socket, req) => {
       if (!checkBearer(req.headers.authorization)) {
-        conn.socket.close(4401, "unauthorized");
+        socket.close(4401, "unauthorized");
         return;
       }
       // Send initial state snapshot
       try {
-        conn.socket.send(
+        socket.send(
           JSON.stringify({ type: "state", payload: opts.bridge.getStatus() }),
         );
         const qr = opts.bridge.getQr();
         if (qr) {
-          conn.socket.send(JSON.stringify({ type: "qr", payload: qr }));
+          socket.send(JSON.stringify({ type: "qr", payload: qr }));
         }
       } catch (err) {
         log.error({ err }, "Failed to send initial WS snapshot");
@@ -214,13 +214,13 @@ export async function buildServer(opts: ServerOptions): Promise<FastifyInstance>
 
       const listener = (evt: BridgeEvent) => {
         try {
-          conn.socket.send(JSON.stringify(evt));
+          socket.send(JSON.stringify(evt));
         } catch (err) {
           log.error({ err }, "WS send failed");
         }
       };
       bus.on("event", listener);
-      conn.socket.on("close", () => bus.off("event", listener));
+      socket.on("close", () => bus.off("event", listener));
     });
   });
 
