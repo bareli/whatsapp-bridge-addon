@@ -1,0 +1,16 @@
+#!/usr/bin/with-contenv bashio
+set -e
+
+export LOG_LEVEL="$(bashio::config 'log_level')"
+export API_TOKEN="$(bashio::config 'api_token')"
+export QR_REFRESH_SECONDS="$(bashio::config 'qr_refresh_seconds')"
+export PUPPETEER_EXECUTABLE="$(bashio::config 'puppeteer_executable')"
+export PROXY_URL="$(bashio::config 'proxy_url')"
+export DATA_DIR="/data"
+export PORT="8080"
+export INGRESS_PORT="8099"
+
+bashio::log.info "Starting WhatsApp Bridge..."
+
+cd /app
+exec node dist/index.js

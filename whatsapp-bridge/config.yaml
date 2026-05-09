@@ -1,0 +1,38 @@
+name: WhatsApp Bridge
+version: "0.1.0"
+slug: whatsapp_bridge
+description: WhatsApp Web bridge for Home Assistant (whatsapp-web.js engine).
+url: https://github.com/your-username/whatsapp-bridge-addon
+arch:
+  - amd64
+  - aarch64
+init: false
+startup: services
+boot: auto
+hassio_api: true
+hassio_role: default
+homeassistant_api: false
+host_network: false
+ingress: true
+ingress_port: 8099
+panel_icon: mdi:whatsapp
+panel_title: WhatsApp Bridge
+ports:
+  "8080/tcp": null
+ports_description:
+  "8080/tcp": Direct HTTP API (leave unset; the integration uses internal DNS).
+map:
+  - addon_config:rw
+discovery:
+  - whatsapp_bridge
+schema:
+  log_level: list(trace|debug|info|notice|warning|error|fatal)?
+  api_token: password
+  qr_refresh_seconds: int(10,120)?
+  puppeteer_executable: str?
+  proxy_url: url?
+options:
+  log_level: info
+  api_token: ""
+  qr_refresh_seconds: 30
+image: ghcr.io/your-username/{arch}-whatsapp-bridge
