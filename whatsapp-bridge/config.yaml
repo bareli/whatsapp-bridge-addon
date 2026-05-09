@@ -1,5 +1,5 @@
 name: WhatsApp Bridge
-version: "0.1.0"
+version: "0.1.1"
 slug: whatsapp_bridge
 description: WhatsApp Web bridge for Home Assistant (whatsapp-web.js engine).
 url: https://github.com/bareli/whatsapp-bridge-addon
