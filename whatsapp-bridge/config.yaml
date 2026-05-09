@@ -1,5 +1,5 @@
 name: WhatsApp Bridge
-version: "0.1.1"
+version: "0.1.2"
 slug: whatsapp_bridge
 description: WhatsApp Web bridge for Home Assistant (whatsapp-web.js engine).
 url: https://github.com/bareli/whatsapp-bridge-addon
@@ -14,7 +14,7 @@ hassio_role: default
 homeassistant_api: false
 host_network: false
 ingress: true
-ingress_port: 8099
+ingress_port: 8080
 panel_icon: mdi:whatsapp
 panel_title: WhatsApp Bridge
 ports:

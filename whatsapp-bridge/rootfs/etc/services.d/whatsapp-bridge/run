@@ -8,7 +8,6 @@ export PUPPETEER_EXECUTABLE="$(bashio::config 'puppeteer_executable')"
 export PROXY_URL="$(bashio::config 'proxy_url')"
 export DATA_DIR="/data"
 export PORT="8080"
-export INGRESS_PORT="8099"
 
 bashio::log.info "Starting WhatsApp Bridge..."
 

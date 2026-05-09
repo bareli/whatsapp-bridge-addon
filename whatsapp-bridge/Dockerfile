@@ -51,4 +51,4 @@ LABEL \
     io.hass.description="WhatsApp Web bridge for Home Assistant" \
     io.hass.arch="amd64|aarch64" \
     io.hass.type="addon" \
-    io.hass.version="0.1.1"
+    io.hass.version="0.1.2"
