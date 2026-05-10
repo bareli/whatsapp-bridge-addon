@@ -12,11 +12,19 @@ const BOOTSTRAP_DISABLED_FILE = path.join(
 let activeToken: string | null = null;
 let bootstrapAvailable = false;
 
+function cleanEnv(v: string | undefined): string {
+  const t = (v || "").trim();
+  if (!t || t.toLowerCase() === "null" || t.toLowerCase() === "undefined") {
+    return "";
+  }
+  return t;
+}
+
 export async function initAuth(): Promise<{
   token: string;
   bootstrapAvailable: boolean;
 }> {
-  const optionToken = (process.env.API_TOKEN || "").trim();
+  const optionToken = cleanEnv(process.env.API_TOKEN);
 
   if (optionToken.length > 0) {
     activeToken = optionToken;

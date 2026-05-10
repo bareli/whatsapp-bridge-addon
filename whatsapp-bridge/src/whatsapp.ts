@@ -43,6 +43,16 @@ function jidFromPhone(input: string): string {
   return `${digits}@c.us`;
 }
 
+// bashio::config returns the literal "null" for unset keys; treat that and
+// "undefined" as empty so they never leak into puppeteer or other clients.
+function cleanEnv(v: string | undefined): string {
+  const t = (v || "").trim();
+  if (!t || t.toLowerCase() === "null" || t.toLowerCase() === "undefined") {
+    return "";
+  }
+  return t;
+}
+
 export class WhatsAppBridge {
   private client: Client | null = null;
   private status: Status = {
@@ -71,11 +81,11 @@ export class WhatsAppBridge {
 
   private buildClient(): Client {
     const executablePath =
-      (process.env.PUPPETEER_EXECUTABLE || "").trim() ||
-      process.env.PUPPETEER_EXECUTABLE_PATH ||
+      cleanEnv(process.env.PUPPETEER_EXECUTABLE) ||
+      cleanEnv(process.env.PUPPETEER_EXECUTABLE_PATH) ||
       "/usr/bin/chromium";
 
-    const proxyUrl = (process.env.PROXY_URL || "").trim();
+    const proxyUrl = cleanEnv(process.env.PROXY_URL);
     const puppeteerArgs = [
       "--no-sandbox",
       "--disable-setuid-sandbox",

@@ -2,12 +2,21 @@
 set -e
 
 export LOG_LEVEL="$(bashio::config 'log_level')"
-export API_TOKEN="$(bashio::config 'api_token')"
 export QR_REFRESH_SECONDS="$(bashio::config 'qr_refresh_seconds')"
-export PUPPETEER_EXECUTABLE="$(bashio::config 'puppeteer_executable')"
-export PROXY_URL="$(bashio::config 'proxy_url')"
 export DATA_DIR="/data"
 export PORT="8080"
+
+# bashio::config returns the literal string "null" for unset optional keys.
+# Only export when an actual value is configured.
+if bashio::config.has_value 'api_token'; then
+    export API_TOKEN="$(bashio::config 'api_token')"
+fi
+if bashio::config.has_value 'puppeteer_executable'; then
+    export PUPPETEER_EXECUTABLE="$(bashio::config 'puppeteer_executable')"
+fi
+if bashio::config.has_value 'proxy_url'; then
+    export PROXY_URL="$(bashio::config 'proxy_url')"
+fi
 
 bashio::log.info "Starting WhatsApp Bridge..."
 

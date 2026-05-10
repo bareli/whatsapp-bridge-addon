@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.3
+
+- Treat `bashio::config` literal `"null"` as empty for `puppeteer_executable`,
+  `proxy_url`, and `api_token`. Previously the run script exported the
+  literal `"null"` string, which leaked into puppeteer and made it
+  reject the executable path with "Browser was not found at the
+  configured executablePath (null)". The bridge then crashed in a
+  restart loop.
+
 ## 0.1.2
 
 - Align `ingress_port` with the Node service port (`8080`). Previously the
