@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4
+
+- Make the ingress status page (`/`) public. Browsers do not send the
+  bearer token, so opening the add-on Web UI returned
+  `{"error":"unauthorized"}`. Other endpoints stay bearer-locked.
+
 ## 0.1.3
 
 - Treat `bashio::config` literal `"null"` as empty for `puppeteer_executable`,

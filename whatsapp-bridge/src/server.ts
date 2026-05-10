@@ -16,7 +16,7 @@ export interface ServerOptions {
   bridge: WhatsAppBridge;
 }
 
-const PUBLIC_PATHS = new Set(["/healthz", "/bootstrap"]);
+const PUBLIC_PATHS = new Set(["/", "/healthz", "/bootstrap"]);
 
 export async function buildServer(opts: ServerOptions): Promise<FastifyInstance> {
   const app = Fastify({ logger: false, bodyLimit: 32 * 1024 * 1024 });
